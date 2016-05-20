@@ -27,12 +27,13 @@ try {
     });
 
     // Setup a base URI so that all generated URIs include the "tutorial" folder
-    $di->set('url', function () {
-        $url = new UrlProvider();
+//    $di->set('url', function () {
+//        $url = new UrlProvider();
 //        $url->setBaseUri('/PhalconStudy/');
-        $url->setBaseUri('app.php/');
-        return $url;
-    });
+//        $url->setBaseUri('/app.php/');
+//        $url->setBaseUri('/');
+//        return $url;
+//    });
 
     // Handle the request
     $application = new Application($di);
