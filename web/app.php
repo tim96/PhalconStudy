@@ -29,7 +29,8 @@ try {
     // Setup a base URI so that all generated URIs include the "tutorial" folder
     $di->set('url', function () {
         $url = new UrlProvider();
-        $url->setBaseUri('/PhalconStudy/');
+//        $url->setBaseUri('/PhalconStudy/');
+        $url->setBaseUri('app.php/');
         return $url;
     });
 
