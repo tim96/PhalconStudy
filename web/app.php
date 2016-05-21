@@ -19,6 +19,16 @@ try {
     // Create a DI
     $di = new FactoryDefault();
 
+    // Setup the database service
+    $di->set('db', function () {
+        return new DbAdapter(array(
+            'host'     => 'localhost',
+            'username' => '',
+            'password' => '',
+            'dbname'   => ''
+        ));
+    });
+
     // Setup the view component
     $di->set('view', function () {
         $view = new View();
