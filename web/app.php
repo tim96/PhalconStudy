@@ -6,8 +6,15 @@ use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+use Phalcon\Config;
 
 try {
+
+    // Prepare config file
+    // require_once '../phalcon/config/config.php';
+    // $config = new Config($settings);
+    // $config = new Config('../phalcon/config/config.php');
+    $config = include __DIR__ . "/../phalcon/config/config.php";
 
     // Register an autoloader
     $loader = new Loader();
@@ -19,13 +26,16 @@ try {
     // Create a DI
     $di = new FactoryDefault();
 
+    // Setup config
+    $di->set('config', $config, true);
+
     // Setup the database service
-    $di->set('db', function () {
+    $di->set('db', function () use ($config) {
         return new DbAdapter(array(
-            'host'     => 'localhost',
-            'username' => '',
-            'password' => '',
-            'dbname'   => ''
+            'host'     => $config->database->host,
+            'username' => $config->database->username,
+            'password' => $config->database->password,
+            'dbname'   => $config->database->dbname,
         ));
     });
 
