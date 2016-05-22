@@ -18,7 +18,9 @@ class MicroKernel extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
+        // clear cache folder after add routes
         $routes->add('/', 'kernel:indexAction', 'index');
+        $routes->add('/api', 'kernel:apiAction', 'api');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
@@ -29,5 +31,10 @@ class MicroKernel extends Kernel
     public function indexAction()
     {
         return new Response('Hello World');
+    }
+
+    public function apiAction()
+    {
+        return new Response('Hello World from api action');
     }
 }
