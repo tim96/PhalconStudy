@@ -12,6 +12,7 @@ Phalcon:
 - [ ] Add admin area
 - [ ] Add dashboard
 - [ ] Add constructor to create full admin area using model class (filter, sort, paginagion, table view, CRUD)
+- [ ] Try Phalcon microframework
 
 Symfony:
 
