@@ -19,6 +19,16 @@ try {
     // Create a DI
     $di = new FactoryDefault();
 
+    // Setup the database service
+    $di->set('db', function () {
+        return new DbAdapter(array(
+            'host'     => 'localhost',
+            'username' => '',
+            'password' => '',
+            'dbname'   => '',
+        ));
+    });
+
     // Setup the view component
     $di->set('view', function () {
         $view = new View();
@@ -29,7 +39,8 @@ try {
     // Setup a base URI so that all generated URIs include the "tutorial" folder
     $di->set('url', function () {
         $url = new UrlProvider();
-        $url->setBaseUri('/example1/');
+//        $url->setBaseUri('/example1/');
+        $url->setBaseUri('/');
         return $url;
     });
 
