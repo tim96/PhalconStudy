@@ -35,6 +35,19 @@ $app->get('/', function () {
     echo '<h2>Hello</h2>';
 });
 
+$app->get('/info', function () {
+    if (isset($_SERVER['HTTP_CLIENT_IP'])
+        || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+        || !(in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1')) || php_sapi_name() === 'cli-server')
+    ) {
+        header('HTTP/1.0 403 Forbidden');
+        exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information. Ip: ' . @$_SERVER['REMOTE_ADDR']);
+    }
+
+    phpinfo();
+    die;
+});
+
 // Define the routes here
 // Retrieves all robots
 $app->get('/api/robots', function () use ($app) {
